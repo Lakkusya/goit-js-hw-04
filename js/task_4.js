@@ -1,17 +1,34 @@
-const hotel = {
-  name: 'Resort Hotel',
-  stars: 5,
-  capacity: 100,
-  showName() {
-    console.log(this.name);
+const account = {
+  owner: 'Mango',
+  balance: 24000,
+  discount: 0.1,
+  orders: ['order-1', 'order-2', 'order-3'],
+  changeDiscount(value) {
+    this.discount = value; // Write code in this line
   },
-  changeCapacity(value) {
-    this.capacity = value;
+  showOrders() {
+    return this.orders; // Write code in this line
+  },
+  addOrder(cost, order) {
+    this.balance -= cost; // Write code in this line
+    this.orders.push(order); // Write code in this line
   },
 };
+const copyAccount =  Object.assign({},account);
+copyAccount.orders = [...account.orders];
+// копируем для автотестов ссылочные типы
+account.changeDiscount(0.15);
+console.log(account.discount); 
+console.log(account.showOrders()); 
+/*
+account.changeDiscount(0.15);
+//console.log(account.discount); // 0.15
 
-hotel.showName(); // Resort Hotel
+//console.log(account.showOrders()); 
+// ['order-1', 'order-2', 'order-3']
 
-hotel.changeCapacity(200);
-console.log(hotel.capacity); // 200
+account.addOrder(5000, 'order-4');
+//console.log(account.balance); // 19000
 
+//console.log(account.showOrders());
+// ['order-1', 'order-2', 'order-3', 'order-4']
